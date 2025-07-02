@@ -1,7 +1,9 @@
 package com.example.api.service;
 
-import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +27,12 @@ public class CustomerService {
 	}
 	
 	// 전체 조회
-	public List<CustomerEntity> findAll(){
-		return customerRepository.findAll();
+	public Page<CustomerEntity> findAll(int currentPage){
+		final int pageSize = 10;
+		int pageNum = (currentPage - 1);
+		Sort sort = Sort.by("customerId").ascending();
+		PageRequest pageable = PageRequest.of(pageNum, pageSize, sort);
+		return customerRepository.findAll(pageable);
 	}
 	
 	// 한행 조회

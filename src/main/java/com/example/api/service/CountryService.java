@@ -1,10 +1,10 @@
 package com.example.api.service;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.example.api.dto.CountryDto;
 import com.example.api.entity.CountryEntity;
 import com.example.api.repository.CityRepository;
@@ -54,8 +54,12 @@ public class CountryService {
 	}
 	
 	// 조회
-	public List<CountryEntity> findAll(){
-		return countryRepository.findAll();
+	public Page<CountryEntity> findAll(int currentPage){
+		final int pageSize = 10;
+		int pageNum = (currentPage - 1);
+		Sort sort = Sort.by("countryId").ascending();
+		PageRequest pageable = PageRequest.of(pageNum, pageSize, sort);
+		return countryRepository.findAll(pageable);
 	}
 	
 }

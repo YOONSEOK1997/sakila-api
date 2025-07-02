@@ -1,9 +1,10 @@
 package com.example.api.contoller;
 
-import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,6 +18,7 @@ import com.example.api.entity.CityEntity;
 import com.example.api.service.CityService;
 
 @RestController
+@CrossOrigin
 public class CityController {
 	private CityService cityService;
 	
@@ -45,9 +47,9 @@ public class CityController {
 
 	
 	// 조회
-	@GetMapping("/city")
-	public ResponseEntity<List<CityEntity>> city(){
-		return new ResponseEntity<List<CityEntity>>(cityService.findAll(), HttpStatus.OK);
+	@GetMapping("/cityList/{currentPage}")
+	public ResponseEntity<Page<CityEntity>> city(@PathVariable int currentPage){
+		return new ResponseEntity<Page<CityEntity>>(cityService.findAll(currentPage), HttpStatus.OK);
 	}
 	
 	// 한행 조회
