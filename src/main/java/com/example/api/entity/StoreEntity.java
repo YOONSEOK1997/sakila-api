@@ -29,7 +29,7 @@ public class StoreEntity {
 	@Column(name = "manager_staff_id")
 	private int managerStaffId;
 	
-	@Column(name = "last_update", nullable = true)
+	@Column(name = "last_update", insertable = false, updatable = false)
 	private Timestamp lastUpdate;
 	
 	// 외래키 Store(다 or 일) : Address(일)

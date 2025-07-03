@@ -36,7 +36,7 @@ public class AddressEntity {
 	@Column(name = "phone")
 	private String phone;
 	
-	@Column(name = "last_update", nullable = true)
+	@Column(name = "last_update", insertable = false, updatable = false)
 	private Timestamp lastUpdate;
 	
 	@ManyToOne 

@@ -60,12 +60,20 @@ public class CityService {
 	
 	// 전체 조회
 	public Page<CityEntity> findAll(int currentPage){
-		final int pageSize = 10;
-		int pageNum = (currentPage - 1);
-		Sort sort = Sort.by("cityId").ascending();
-		PageRequest pageable = PageRequest.of(pageNum, pageSize, sort);
-		return cityRepository.findAll(pageable);
+	    final int pageSize = 10;
+	    int pageNum = currentPage - 1; // 0부터 시작하는 페이지 번호
+	    Sort sort = Sort.by("cityId").ascending();
+	    PageRequest pageable = PageRequest.of(pageNum, pageSize, sort);
+
+	    Page<CityEntity> result = cityRepository.findAll(pageable);
+
+	    // 여기서 totalPages, totalElements 등 정보 확인 가능
+	    int totalPages = result.getTotalPages();      // 전체 페이지 수
+	    long totalElements = result.getTotalElements();  // 전체 데이터 개수
+
+	    return result;
 	}
+
 	
 	// 한행 조회
 	public CityEntity findById(int cityId) {

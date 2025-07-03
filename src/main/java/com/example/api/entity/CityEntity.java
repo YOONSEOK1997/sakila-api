@@ -24,7 +24,7 @@ public class CityEntity {	// city - 일대다 - country
 	@Column(name = "city")
 	private String city;
 	
-	@Column(name = "last_update", nullable = true)
+	@Column(name = "last_update", insertable = false, updatable = false)
 	private Timestamp lastUpdate;
 	
 	// 다(city)대일(country)

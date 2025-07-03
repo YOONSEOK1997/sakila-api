@@ -42,7 +42,7 @@ public class CustomerEntity implements Serializable{
 	@Column(name = "create_date")
 	private Timestamp createDate;
 
-	@Column(name = "last_update")
+	@Column(name = "last_update", insertable = false, updatable = false)
 	private Timestamp lastUpdate;
 
 	@ManyToOne
