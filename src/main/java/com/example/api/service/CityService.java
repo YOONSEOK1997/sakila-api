@@ -67,7 +67,7 @@ public class CityService {
 
 	    Page<CityEntity> result = cityRepository.findAll(pageable);
 
-	    // 여기서 totalPages, totalElements 등 정보 확인 가능
+	  
 	    int totalPages = result.getTotalPages();      // 전체 페이지 수
 	    long totalElements = result.getTotalElements();  // 전체 데이터 개수
 
